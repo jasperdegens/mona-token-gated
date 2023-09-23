@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { kv } from '@vercel/kv'
 import { getIp } from "@/utils/getIp";
 
-const VALIDITY_DURATION = 1000 * 60 // 1 minute validity
+const VALIDITY_DURATION = 1000 * 60 * 60// 1 hour validity
 
 
 export async function GET(request: Request): Promise<NextResponse> {

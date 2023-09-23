@@ -26,7 +26,7 @@ export default function Home() {
         onClick={() => {
           authorizeIP()
         }}
-        disabled={authorizingState === 'AUTHORIZING' || authorizingState === 'AUTHORIZED'}
+        disabled={authorizingState === 'AUTHORIZING'}
         >{authorizingState === 'NONE' ? 'Authorize IP' : authorizingState === 'AUTHORIZING' ? 'Authrizing...' : authorizingState == 'AUTHORIZED' ? 'Authorized' : 'Error'}
       </button> 
 
