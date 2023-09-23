@@ -7,7 +7,6 @@ export function middleware(request: NextRequest) {
   if(!ip && forwardedFor){
     ip = forwardedFor.split(',').at(0) ?? 'Unknown'
   }
-  console.log(ip)
   const requestHeaders = new Headers(request.headers)
   const response = NextResponse.next({
     request,

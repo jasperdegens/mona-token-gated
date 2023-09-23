@@ -2,21 +2,24 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { kv } from '@vercel/kv'
-import {cookies} from 'next/headers'
-import jwt from 'jsonwebtoken'
+import { getIp } from "@/utils/getIp";
 
 const VALIDITY_DURATION = 1000 * 60 // 1 minute validity
 
 
 export async function GET(request: Request): Promise<NextResponse> {
 
-  // create jwt with avatarId encoded
-  // @ts-ignore
-  const t = jwt.sign({avatarId: 1}, process.env.JWT_SECRET, {expiresIn: "1m"})
-  
-  // set cookie on client
-  cookies().set("mona-token-gater", t)
-  // store ip in kv with exp timestamp
+  // get ip address of user
+  const ip = getIp(request)
 
-  return NextResponse.json(t)
+  if(!ip){
+    return new NextResponse('No IP found', {status: 400})
+  }
+
+  // get valid avatar ids and store validity time
+  const validAvatars = ['1', '2', '3']
+  const exp = Date.now() + VALIDITY_DURATION
+  await kv.set(ip, JSON.stringify({avatarIds: validAvatars, exp}))
+
+  return NextResponse.json({avatarIds: validAvatars, exp}, {status: 200})
 } 
