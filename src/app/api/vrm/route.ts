@@ -19,7 +19,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
   if(user.exp < Date.now()){
     return new NextResponse('IP has expired', {status: 400})
-  })
+  }
   
   if(!user.avatarIds){
     return new NextResponse('No avatar ids found', {status: 400})
