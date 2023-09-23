@@ -2,7 +2,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
-  console.log('fsdfasdfasdfasdfa')
   let ip = request.ip ?? request.headers.get('x-real-ip')
   const forwardedFor = request.headers.get('x-forwarded-for')
   if(!ip && forwardedFor){
@@ -14,8 +13,7 @@ export function middleware(request: NextRequest) {
     request,
     headers: requestHeaders
   })
-  response.headers.set('x-real-ip', ip)
-  console.log('fidfas')
+  response.headers.set('x-real-ip', ip ? ip : 'Unknown')
   return response;
 }
 
