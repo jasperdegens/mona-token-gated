@@ -17,7 +17,9 @@ export async function GET(request: Request): Promise<NextResponse> {
   }
 
   // get valid avatar ids and store validity time
-  const validAvatars = ['1', '2', '3']
+
+  // randomly select 3 avatars
+  const validAvatars = [Math.floor(Math.random() * 50), Math.floor(Math.random() * 50), Math.floor(Math.random() * 50)].map((id) => id.toString())
   const exp = Date.now() + VALIDITY_DURATION
   await kv.set(ip, JSON.stringify({avatarIds: validAvatars, exp}))
 
