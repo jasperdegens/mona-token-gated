@@ -25,7 +25,7 @@ export async function GET(request: Request): Promise<NextResponse> {
     await kv.set(ip, JSON.stringify({avatarIds: [], exp: 0}))
     return new NextResponse('Access revoked', {status: 200})
   }
-  
+
   // get valid avatar ids and store validity time
 
   // randomly select 3 avatars
@@ -33,5 +33,5 @@ export async function GET(request: Request): Promise<NextResponse> {
   const exp = Date.now() + VALIDITY_DURATION
   await kv.set(ip, JSON.stringify({avatarIds: validAvatars, exp}))
 
-  return NextResponse.json({avatarIds: validAvatars, exp}, {status: 200})
+  return NextResponse.json({avatarIds: validAvatars, ip, exp}, {status: 200})
 } 
