@@ -1,6 +1,6 @@
 # MonaGater 🚪👀👾
 
-MonaGater is a prototype to token gate avatars for specific users. This could allow users to link Mona avatars to their owned NFTs across any EVM chain! 🤯
+MonaGater is a prototype to token gate Mona avatars. This could allow users to link Mona avatars to their owned NFTs across any EVM chain! 🤯
 
 Used Technologies: 🛠️
 - Next.js
